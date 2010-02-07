@@ -43,14 +43,28 @@ public class Sintactico {
     //Pila de Analisis Sintáctico
     private static ArrayList<String> pila = new ArrayList<String>();
     //Entrada de Prueba
-    //private static String[] datos = {"VARIABLES", "VAR", "ID", "BOOL", ";",
-    //    "INICIO", "LEER", "(", "ID", ")", ";", "FIN", "$", ""};
-    private static String[] datos = {"VARIABLES", "VAR", "ID", "ENTERO", ";", "VAR",
-        "ID", "CADENA", ";", "INICIO", "REPETIR", "(",
-        "ID", "=", "=", "NUM", ")", "{", "ESCRIBIR", "(",
-        "NUM", ")", ";", "}", "SI", "(", "TRUE", ")",
-        "{", "}", "SINO", "{", "ID", "=", "NUM", "+",
-        "NUM", ";", "}", "FIN", "$"};
+
+    //- Ejemplo 1
+    private static String[] datos = {"VARIABLES", "VAR", "ID", "BOOL", ";",
+        "INICIO", "LEER", "(", "ID", ")", ";", "FIN", "$", ""};
+
+    //- Ejemplo 2
+//       private static String[] datos = {"VARIABLES", "VAR", "ID", "ENTERO", ";", "VAR",
+//        "ID", "CADENA", ";", "INICIO", "REPETIR", "(",
+//        "ID", "=", "=", "NUM", ")", "{", "ESCRIBIR", "(",
+//        "NUM", ")", ";", "}", "SI", "(", "TRUE", ")",
+//        "{", "}", "SINO", "{", "ID", "=", "NUM", "+",
+//        "NUM", ";", "}", "FIN", "$"};
+
+  //- Ejemplo 3
+//    private static String[] datos = {"VARIABLES","VAR","ID","BOOL",";","INICIO",
+//                                "PARA","(","ID","=","NUM",";","NUM",";","NUM",
+//                                ")","{","OPCION","(","ID","+","NUM",")","{",
+//                                "CASO","NUM",":","ESCRIBIR","(","CADENA",")",
+//                                ";","CASO","NUM",":","ESCRIBIR","(","CADENA",
+//                                ")",";","SINO",":","LEER","(","ID",")",";",
+//                                "}","}","FIN","$"};
+
     static ArrayList<String> intro = new ArrayList<String>();
 
     /**
@@ -80,7 +94,7 @@ public class Sintactico {
 
 
         try {
-            archivo = new File("archivos\\Tabla.txt");
+            archivo = new File("archivos\\Tabla2.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -101,7 +115,10 @@ public class Sintactico {
                             datos[i] = datos[i].substring(k).trim();
                         }
                         //almacenar en la matriz
+
                         tabla[fil][col] = datos[i];
+
+
                     }
                     col++;
                 }
@@ -133,6 +150,12 @@ public class Sintactico {
                 if (tabla[i][j] == null) {
                     tabla[i][j] = "ERROR";
                 }
+         /*       if (tabla[i][0].equals("SENTENCIA")) {
+                    System.out.print("[" + tabla[i][j] + "]    ");
+                }
+          *
+          */
+                
             }
         }
         System.out.println("CORRECION ok");
@@ -234,9 +257,9 @@ public class Sintactico {
      * ESTADO : COMPLETO
      */
     public static void coincidencia() {
-        System.out.println("COINCIDENCIA [" + pila.get(pila.size() - 1) + "]==[" + intro.get(0) + "]");
+        System.out.print("COINCIDENCIA [" + pila.get(pila.size() - 1) + "]==[" + intro.get(0) + "]");
         //Elimina el último de la pila
-        pila.remove(pila.get(pila.size() - 1));
+        pila.remove(pila.size() - 1);
         //Elimina el primero de la entrada
         intro.remove(0);
     }
@@ -283,14 +306,9 @@ public class Sintactico {
         boolean error = false;
         boolean continuar = true;
 
-        presentar();
+             presentar();
 
         while (continuar && !error) {
-
-            if (pila.size() == 4){
-                System.out.println("");
-            }
-
             int col = buscarElementoTerminal(intro.get(0));
             int fil = buscarElementoNoTerminal(pila.get(pila.size() - 1));
 
@@ -306,13 +324,13 @@ public class Sintactico {
             }
             //Es vacío, elimino el último elemento de la pila.
             if (sal.toUpperCase().equals("E")) {
-                pila.remove(pila.get(pila.size() - 1));
+                pila.remove(pila.size() - 1);
             } else {
                 //convierto la coincidencia a la inversa en la pila
                 invertir(sal);
             }
 
-            presentar();
+           presentar();
 
             //Elimino todas las coincidencias
             while (pila.get(pila.size() - 1).equals(intro.get(0))) {
