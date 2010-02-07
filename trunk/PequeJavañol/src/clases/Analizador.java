@@ -60,13 +60,15 @@ public class Analizador {
         System.out.println("****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****");
 
 
-        // Salida de Prueba
-        System.out.println("-----------------");
 
-        for (String a : salida) {
-            //System.out.print(a + "  ");
+        System.out.println("-------------------------------");
+        for (String s : salida) {
+            System.out.print("[" + s + "] ");
         }
-
+        System.out.println("");
+        System.out.println("-------------------------------");
+//Analisis Sintáctico
+        Sintactico.analisisSintactico(salida);
         return error;
     }
 
@@ -75,7 +77,7 @@ public class Analizador {
      *
      * @return ArrayList<String> salida lista de las palabras a pasarse a analisar
      */
-    public static ArrayList<String> getSalida(){
+    public static ArrayList<String> getSalida() {
         return salida;
     }
 
@@ -84,10 +86,9 @@ public class Analizador {
      *
      * @return ArrayList<String> salida lista de las palabras a pasarse a analisar
      */
-    public static void setResetSalida(){
+    public static void setResetSalida() {
         salida.clear();
     }
-
 
     /**
      * Realiza el reconocimiento de los elementos contenidos en el buffer.
@@ -292,7 +293,7 @@ public class Analizador {
 
             if (aux2.equals("")) {
                 salida.add(valor);
-                if(valor.equals("CADENA")||valor.equals("BOOL")||valor.equals("ENTERO")){
+                if (valor.equals("CADENA") || valor.equals("BOOL") || valor.equals("ENTERO")) {
                     salida.add(";");
                 }
             } else {

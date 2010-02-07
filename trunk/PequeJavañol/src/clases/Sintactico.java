@@ -68,10 +68,12 @@ public class Sintactico {
      * Crea un ArrayList similar al que envia el
      * Analizador Lexico
      */
-    public static void llenado(String[] tokens) {
-        for (int i = 0; i < tokens.length; i++) {
-            intro.add(tokens[i]);
-        }
+    public static void llenado(ArrayList<String> tokens) {
+//        for (int i = 0; i < tokens.length; i++) {
+//            intro.add(tokens[i]);
+//        }
+        intro = tokens;
+
         pila.add("$");
         pila.add("PROGRAMA");
     }
@@ -182,7 +184,7 @@ public class Sintactico {
         tok.put("MENOR IGUAL QUE", "<=");
         tok.put("INI_PAR", "(");
         tok.put("FIN_PAR", ")");
-        tok.put("INI_LLA", "}");
+        tok.put("INI_LLA", "{");
         tok.put("FIN_LLA", "}");
 
         if (tok.get(token) == null) {
@@ -280,11 +282,12 @@ public class Sintactico {
         }
     }
 
-    public static void analisisSintactico(String[] tokens) {
+    public static void analisisSintactico(ArrayList<String> tokens) {
         cargarTabla();
         //   presentarTabla();
 
         llenado(tokens);
+
         System.out.println("--------------");
         boolean error = false;
         boolean continuar = true;
@@ -325,7 +328,6 @@ public class Sintactico {
                 } else {
                     coincidencia();
                 }
-
             }
         }
 
@@ -335,7 +337,7 @@ public class Sintactico {
         }
     }
     //AREA DE TESTING
-    public static void main(String[] args) {
-        analisisSintactico(datos);
-    }
+//    public static void main(String[] args) {
+//        analisisSintactico(datos);
+//    }
 }
