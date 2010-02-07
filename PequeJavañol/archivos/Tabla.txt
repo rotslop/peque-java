@@ -18,7 +18,7 @@ S_LEER																										S_LEER --> LEER ( ID )
 S_ESCRIBIR																											S_ESCRIBIR -->  ESCRIBIR ( ELEMENTO )								
 ELEMENTO							ELEMENTO --> I_PARA			ELEMENTO --> I_PARA																		ELEMENTO --> CADENA							
 EXP_ASIG							EXP_ASIG --> ID = COND																												
-EXP2																					EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA											EXP2 -> E
+EXP2																					EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA											EXP2 --> E
 COND					COND --> CONDICION		COND --> C_CONDICION	COND --> C_CONDICION	COND --> C_CONDICION	COND --> C_CONDICION																									
 SENT	SENT --> SENTENCIA		SENT --> e	SENT --> e												SENT --> SENTENCIA	SENT --> SENTENCIA		SENT --> SENTENCIA						SENT --> e	SENT --> SENTENCIA	SENT --> SENTENCIA			SENT --> e					SENT --> e
 SENTENCIA'	SENTENCIA' --> S_SI						SENTENCIA' --> EXP-ASIG ;									SENTENCIA' --> S_REP	SENTENCIA' --> S_PARA		SENTENCIA' --> S_CASO							SENTENCIA' --> S_LEER ;	SENTENCIA' --> S_ESCRIBIR ;								SENTENCIA' --> e
