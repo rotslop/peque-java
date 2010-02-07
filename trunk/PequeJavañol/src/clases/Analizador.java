@@ -60,7 +60,6 @@ public class Analizador {
         System.out.println("****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****");
 
 
-
         System.out.println("-------------------------------");
         for (String s : salida) {
             System.out.print("[" + s + "] ");
@@ -366,6 +365,8 @@ public class Analizador {
      * @return código numérico del caracter enviado o 0 si no lo encuentra.
      *
      * @author qmarqeva
+     *
+     * Modificado christmo
      */
     private static int buscarCodigo(String caracter) {
         String valor = (String) codigo.get(caracter.toUpperCase());
@@ -387,6 +388,7 @@ public class Analizador {
     public static String[] quitarEspaciosLineas(String texto) {
         String[] lineas = texto.split("\n");
         String[] Salida = new String[lineas.length];
+        boolean inicio = false;
         for (int i = 0; i < lineas.length; i++) {
             //Patron para reconocer todos los estapacios, tabs y enters del codigo que sean >1
             Pattern patron = Pattern.compile("\\s+");
@@ -397,7 +399,21 @@ public class Analizador {
             Matcher encaja2 = patron2.matcher(resultado);
             String resultado2 = encaja2.replaceAll("");
             String strCodigoListo = separadoresCodigo(resultado2);
-            Salida[i] = strCodigoListo;
+            
+            if(strCodigoListo.equals("VARIABLES")){
+                Salida[i] = strCodigoListo+" "; //error aqui aun hay que poner espacio al final de variables revisar christmo
+                //System.out.println("--"+Salida[i]);
+                inicio = false;
+            }
+            if(strCodigoListo.equals("INICIO")){
+                Salida[i] = strCodigoListo+" ";
+                inicio = true;
+            }
+            if(inicio){
+                Salida[i] = strCodigoListo+" ";
+            }else{
+                Salida[i] = strCodigoListo;
+            }
         }
         return Salida;
     }
