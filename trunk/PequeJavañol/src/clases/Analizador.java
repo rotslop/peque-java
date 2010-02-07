@@ -9,6 +9,7 @@
 package clases;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,6 +25,9 @@ public class Analizador {
     //Llaves de los Tokens
     static HashMap token = null;
     static HashMap codigo = null;
+
+    //Salida de Tokens
+    static ArrayList<String> salida = new ArrayList<String>();
 
     /**
      * Carga todos los archivos necesarios del Analizador
@@ -55,6 +59,15 @@ public class Analizador {
             System.out.println("");
         }
         System.out.println("****ATENCIÓN: SE DETECTARON ["+error+"] ERRORES****" );
+
+       
+       // Salida de Prueba
+        System.out.println("-----------------");
+
+        for (String a : salida){
+            System.out.print(a+"  ");
+        }
+
         return error;
     }
 
@@ -81,7 +94,8 @@ public class Analizador {
                     i = buffer.length() + 120;
                 }
             } else if (num < 0) {
-                System.out.print(buscarToken(String.valueOf(num)) + "  ");
+                String aux = buscarToken(String.valueOf(num));
+                System.out.print( aux + "  ");
                 num = 0;
                 //Control de espacio al inicio FOR REVIEW
                 if ((i + 2) < (buffer.length() - 1)) {
@@ -254,6 +268,15 @@ public class Analizador {
     private static String buscarToken(String key) {
         String valor = (String) token.get(key);
         if (valor != null) {
+
+            //Guardando la Salida
+                String aux2 = Sintactico.reemplazarToken(valor);
+
+                if (aux2.equals("")){
+                    salida.add(valor);
+                }else{
+                    salida.add(aux2);
+                }
             return valor + "["+key+"]";
         }
         return "";

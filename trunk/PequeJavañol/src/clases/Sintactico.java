@@ -4,25 +4,30 @@
  * Proceso:
  *
  * - Carga de la Tabla de Analisis Lexico LL(1)
- *      - Sera una matriz identica a la hoja de calculo
- *      - Por cada casilla se eliminará el elemento xxx -->
- *      - Serán almacenados como cadena
+ *      - Sera una matriz identica a la hoja de calculo (listo)
+ *      - Por cada casilla se eliminará el elemento xxx --> (listo)
+ *      - Serán almacenados como cadena (listo)
  * - Los elementos Detectados por el Analizador Lexico
- *      - Serán almacenados en un Array o ArrayList
+ *      - Serán almacenados en un Array o ArrayList (listo)
  *      - Se reemplzarán los tokens de los símbolos { } ( ) ;
- *        por su valor caracter. (xq la tabla los tiene asi )
+ *        por su valor caracter. (xq la tabla los tiene asi )(listo)
  * - El analisis empezará leyendo como entrada el elemento en
  *   la posición 0 del la salida del Analizador Lexico
  * - Idear un proceso de búsqueda de coincidencias en la tabla
  * - Idear un proceso para invertir la correspondencia de la tabla
  * - Manejador de Coincidencias y Detector de Errores.
  *
+ * PROBLEMAS:
+ * - El analizador léxico no reconce todos los ; en la salida
+ * - Ignora la parte de VARIABLES INICIO FIN en la salida
+ *      Esto hace que el léxico de errores luego.... ojo
  */
 package clases;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.HashMap;
 
 /**
  *
@@ -109,9 +114,29 @@ public class Sintactico {
      *
      * @param token
      * @return símbolo que representa al token
+     *
+     * ESTADO : COMPLETADO
      */
-    public String reemplazarToken(String token) {
-        return "";
+    public static String reemplazarToken(String token) {
+        HashMap tok = new HashMap();
+        tok.put("SUM", "+");
+        tok.put("RESTA", "-");
+        tok.put("FIN LINEA", ";");
+        tok.put("ASIGNACION", "=");
+        tok.put("IGUALDAD", "==");
+        tok.put("MAYOR QUE", ">");
+        tok.put("MAYOR_IGUAL QUE", ">=");
+        tok.put("MENOR QUE", "<");
+        tok.put("MENOR IGUAL QUE", "<=");
+        tok.put("INI_PAR", "(");
+        tok.put("FIN_PAR", ")");
+        tok.put("INI_LLA", "}");
+        tok.put("FIN_LLA", "}");
+
+        if (tok.get(token) == null){
+            return "";
+        }
+        return  (String)tok.get(token) ;
     }
 
     /**
