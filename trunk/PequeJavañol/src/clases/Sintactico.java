@@ -43,11 +43,9 @@ public class Sintactico {
     //Pila de Analisis Sintáctico
     private static ArrayList<String> pila = new ArrayList<String>();
     //Entrada de Prueba
-
     //- Ejemplo 1
     private static String[] datos = {"VARIABLES", "VAR", "ID", "BOOL", ";",
         "INICIO", "LEER", "(", "ID", ")", ";", "FIN", "$", ""};
-
     //- Ejemplo 2
 //       private static String[] datos = {"VARIABLES", "VAR", "ID", "ENTERO", ";", "VAR",
 //        "ID", "CADENA", ";", "INICIO", "REPETIR", "(",
@@ -55,8 +53,7 @@ public class Sintactico {
 //        "NUM", ")", ";", "}", "SI", "(", "TRUE", ")",
 //        "{", "}", "SINO", "{", "ID", "=", "NUM", "+",
 //        "NUM", ";", "}", "FIN", "$"};
-
-  //- Ejemplo 3
+    //- Ejemplo 3
 //    private static String[] datos = {"VARIABLES","VAR","ID","BOOL",";","INICIO",
 //                                "PARA","(","ID","=","NUM",";","NUM",";","NUM",
 //                                ")","{","OPCION","(","ID","+","NUM",")","{",
@@ -64,7 +61,6 @@ public class Sintactico {
 //                                ";","CASO","NUM",":","ESCRIBIR","(","CADENA",
 //                                ")",";","SINO",":","LEER","(","ID",")",";",
 //                                "}","}","FIN","$"};
-
     static ArrayList<String> intro = new ArrayList<String>();
 
     /**
@@ -72,9 +68,9 @@ public class Sintactico {
      * Crea un ArrayList similar al que envia el
      * Analizador Lexico
      */
-    public static void llenado() {
-        for (int i = 0; i < datos.length; i++) {
-            intro.add(datos[i]);
+    public static void llenado(String[] tokens) {
+        for (int i = 0; i < tokens.length; i++) {
+            intro.add(tokens[i]);
         }
         pila.add("$");
         pila.add("PROGRAMA");
@@ -91,7 +87,6 @@ public class Sintactico {
         String linea = null;
 
         int fil = 0;
-
 
         try {
             archivo = new File("archivos\\Tabla2.txt");
@@ -115,16 +110,12 @@ public class Sintactico {
                             datos[i] = datos[i].substring(k).trim();
                         }
                         //almacenar en la matriz
-
                         tabla[fil][col] = datos[i];
-
-
                     }
                     col++;
                 }
                 fil++;
             }
-
             //Capturamos las posibles excepciones
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,12 +141,6 @@ public class Sintactico {
                 if (tabla[i][j] == null) {
                     tabla[i][j] = "ERROR";
                 }
-         /*       if (tabla[i][0].equals("SENTENCIA")) {
-                    System.out.print("[" + tabla[i][j] + "]    ");
-                }
-          *
-          */
-                
             }
         }
         System.out.println("CORRECION ok");
@@ -294,19 +279,17 @@ public class Sintactico {
             System.out.print(a + "  ");
         }
     }
-    //AREA DE TESTING
 
-    public static void main(String[] args) {
-
+    public static void analisisSintactico(String[] tokens) {
         cargarTabla();
         //   presentarTabla();
 
-        llenado();
+        llenado(tokens);
         System.out.println("--------------");
         boolean error = false;
         boolean continuar = true;
 
-             presentar();
+        presentar();
 
         while (continuar && !error) {
             int col = buscarElementoTerminal(intro.get(0));
@@ -330,7 +313,7 @@ public class Sintactico {
                 invertir(sal);
             }
 
-           presentar();
+            presentar();
 
             //Elimino todas las coincidencias
             while (pila.get(pila.size() - 1).equals(intro.get(0))) {
@@ -350,5 +333,9 @@ public class Sintactico {
         if (error) {
             System.out.println("GRAMATICA CON ERRORES");
         }
+    }
+    //AREA DE TESTING
+    public static void main(String[] args) {
+        analisisSintactico(datos);
     }
 }
