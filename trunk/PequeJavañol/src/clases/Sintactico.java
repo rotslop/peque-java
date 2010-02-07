@@ -18,10 +18,11 @@
  * - Manejador de Coincidencias y Detector de Errores.
  *
  */
-
 package clases;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 /**
  *
@@ -30,13 +31,76 @@ import java.util.ArrayList;
 public class Sintactico {
 
     //Tabla de Coincidencias Analisis LL(1)
-    private ArrayList tabla = new ArrayList();
+    private static String[][] tabla = new String[31][37];
 
     /**
      * Cargará la estructura de la tabla desde un archivo.
+     * Estado : COMPLETADO
      */
-    public void cargarTabla(){
+    public static void cargarTabla() {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        String linea = null;
 
+        int fil = 0;
+
+
+        try {
+            archivo = new File("archivos\\Tabla.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+            String[] datos = null;
+            System.out.println(" SALIDA ");
+
+            while ((linea = br.readLine()) != null) {
+                datos = linea.split("\t");
+                int col = 0;
+                for (int i = 0; i < datos.length; i++) {
+
+                    if (!datos[i].isEmpty()) {
+
+                        //Eliminar la parte de xxx-->
+                        int indice = datos[i].indexOf("-->");
+                        if (indice > 0) {
+                            int k = indice + 3;
+                            datos[i] = datos[i].substring(k).trim();
+                        }
+                        //almacenar en la matriz
+                        tabla[fil][col] = datos[i];
+                    }
+                    col++;
+                }
+                fil++;
+            }
+
+            //Capturamos las posibles excepciones
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Se puede Borrar
+     * Es solo para prueba
+     * ESTADO : COMPLETADO
+     */
+    public static void presentarTabla() {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 36; j++) {
+                System.out.print("[" + tabla[i][j] + "]");
+            }
+            System.out.println("");
+        }
     }
 
     /**
@@ -46,28 +110,27 @@ public class Sintactico {
      * @param token
      * @return símbolo que representa al token
      */
-    public String reemplazarToken(String token){
+    public String reemplazarToken(String token) {
         return "";
     }
+
     /**
      * Buscará en la cabecera de la tabla el elemento
      * terminal
      * @param terminal
      * @return posición (columna) o -1 sino existe
      */
-
-    public int buscarElementoTerminal(String terminal){
+    public int buscarElementoTerminal(String terminal) {
         return -1;
     }
 
-   /**
+    /**
      * Buscará en la columna izquierda de la tabla el elemento
      * no terminal solicitado
      * @param noterminal
      * @return posición (columna) o -1 sino existe
      */
-
-    public int buscarElementoNoTerminal(String noterminal){
+    public int buscarElementoNoTerminal(String noterminal) {
         return -1;
     }
 
@@ -78,7 +141,7 @@ public class Sintactico {
      * @param col
      * @return coincidencia de la tabla
      */
-    public String extraerConcidencia(int fil, int col){
+    public String extraerConcidencia(int fil, int col) {
         return "";
     }
 
@@ -86,16 +149,14 @@ public class Sintactico {
      * Elimina el elemento del inicio del arreglo cuando existe una coincidencia
      * en la Entrada
      */
-    public void elimCndEntrada(){
-
+    public void elimCndEntrada() {
     }
 
     /**
      * Elimina el elemento del final del arreglo de Analisis
      * al Encontrar una coincidencia
      */
-    public void elimCndAnalisis(){
-
+    public void elimCndAnalisis() {
     }
 
     /**
@@ -104,14 +165,14 @@ public class Sintactico {
      * previa la eliminación del anterior.
      * @param entrada
      */
-    public void invertir(String entrada){
-
+    public void invertir(String entrada) {
     }
 
+    //AREA DE TESTING
     public static void main(String[] args) {
-        
-        System.out.println("LISTO ES LA SALIDA POR CONSOLA PARA LOS TEST");
-        
-    }
 
+        cargarTabla();
+        presentarTabla();
+
+    }
 }
