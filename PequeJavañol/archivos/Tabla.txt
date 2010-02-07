@@ -1,0 +1,29 @@
+	SI	{	}	SINO	(	)	ID	TRUE	FALSE	NUM	>	<	AND	OR	=	REPETIR	PARA	;	OPCION	:	+	-	*	/	CASO	LEER	ESCRIBIR	CADENA	INICIO	FIN	VARIABLES	VAR	ENTERO	BOOL	$
+S_SI	S_SI --> SI CONDICION { SENTENCIAS } OPC_SINO						SENTENCIA --> SENTENCIA' SENT																												
+SENTENCIA	SENTENCIA --> SENTENCIA' SENT		SENTENCIA --> e													SENTENCIA --> SENTENCIA' SENT	SENTENCIA --> SENTENCIA' SENT		SENTENCIA --> SENTENCIA' SENT							SENTENCIA --> SENTENCIA' SENT	SENTENCIA --> SENTENCIA' SENT			SENTENCIA --> e					SENTENCIA -->  e
+OPC_SINO				OPC_SINO --> SINO { SENTENCIA }																															OPC_SINO -->  e
+CONDICION					CONDICION --> ( CONDICION )		CONDICION --> VRB COMPARADOR VRB	CONDICION --> TRUE	CONDICION --> FALSE	CONDICION --> VRB COMPARADOR VRB																									
+VRB					VRB --> CONDICION		VRB --> ID	VRB --> CONDICION	VRB --> CONDICION	VRB --> NUM																									
+COMPARADOR											COMPADOR --> SIG =	COMPADOR --> < SIG	COMPARADOR --> AND	COMPARADOR --> OR	COMPARADOR --> SIG =																				
+SIG											SIG --> >				SIG --> =																				
+S_REP																S_REP --> REPETIR CONDICION { SENTENCIA }																			
+S_PARA																	S_PARA --> PARA ( ID = I_PARA ; I_PARA ; I_PARA) { SENTENCIA }																		
+I_PARA							I_PARA --> ID			I_PARA --> NUM																									
+S_CASO																			S_CASO --> OPCION ( C_CONDICION ) { CASO_NUM SINO : SENTENCIA }																
+C_CONDICION							C_CONDICION --> I_PARA EXP2			C_CONDICION --> I_PARA EXP2																									
+OPER																					OPER --> +	OPER --> -	OPER --> *	OPER --> /											
+CASO_NUM																									CASO_NUM --> CASO NUM : SENTENCIA ADD_CASO										
+ADD_CASO				ADD_CASO --> e																					ADD_CASO --> CASO_NUM										ADD_CASO --> e
+S_LEER																										S_LEER --> LEER ( ID )									
+S_ESCRIBIR																											S_ESCRIBIR -->  ESCRIBIR ( ELEMENTO )								
+ELEMENTO							ELEMENTO --> I_PARA			ELEMENTO --> I_PARA																		ELEMENTO --> CADENA							
+EXP_ASIG							EXP_ASIG --> ID = COND																												
+EXP2																					EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA	EXP2 --> OPER I_PARA											EXP2 -> E
+COND					COND --> CONDICION		COND --> C_CONDICION	COND --> C_CONDICION	COND --> C_CONDICION	COND --> C_CONDICION																									
+SENT	SENT --> SENTENCIA		SENT --> e	SENT --> e												SENT --> SENTENCIA	SENT --> SENTENCIA		SENT --> SENTENCIA						SENT --> e	SENT --> SENTENCIA	SENT --> SENTENCIA			SENT --> e					SENT --> e
+SENTENCIA'	SENTENCIA' --> S_SI						SENTENCIA' --> EXP-ASIG ;									SENTENCIA' --> S_REP	SENTENCIA' --> S_PARA		SENTENCIA' --> S_CASO							SENTENCIA' --> S_LEER ;	SENTENCIA' --> S_ESCRIBIR ;								SENTENCIA' --> e
+CUERPO																													CUERPO --> INICIO SENTENCIA FIN
+ENCABEZADO																															ENCABEZADO --> VARIABLES DECLAR
+DECLAR																		DECLAR --> e											DECLAR --> e			DECLAR -->  VAR ID TIPO_DATO ; DECLAR
+TIPO_DATO																												TIPO_DATO --> CADENA					TIPO_DATO --> ENTERO	TIPO_DATO --> BOOL	
+PROGRAMA																															PROGRAMA --> ENCABEZADO CUERPO				
