@@ -150,11 +150,11 @@ private void jbVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         setIconoIndicador(false);
     }
 
-    System.out.println("----");
-    for(String d: Analizador.getSalida()){
-        System.out.println(""+d);
-    }
-    System.out.println("----");
+//    System.out.println("----");
+//    for(String d: Analizador.getSalida()){
+//        System.out.println(""+d);
+//    }
+//    System.out.println("----");
     Analizador.setResetSalida();
     
 }//GEN-LAST:event_jbVerificarActionPerformed
