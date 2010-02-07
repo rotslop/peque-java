@@ -25,7 +25,6 @@ public class Analizador {
     //Llaves de los Tokens
     static HashMap token = null;
     static HashMap codigo = null;
-
     //Salida de Tokens
     static ArrayList<String> salida = new ArrayList<String>();
 
@@ -58,18 +57,37 @@ public class Analizador {
             error += lecturaBuffer(texto[i]);
             System.out.println("");
         }
-        System.out.println("****ATENCIÓN: SE DETECTARON ["+error+"] ERRORES****" );
+        System.out.println("****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****");
 
-       
-       // Salida de Prueba
+
+        // Salida de Prueba
         System.out.println("-----------------");
 
-        for (String a : salida){
-            System.out.print(a+"  ");
+        for (String a : salida) {
+            //System.out.print(a + "  ");
         }
 
         return error;
     }
+
+    /**
+     * Retorna el arreglo de la salida para mandarlo a analisar en el sisntactico
+     *
+     * @return ArrayList<String> salida lista de las palabras a pasarse a analisar
+     */
+    public static ArrayList<String> getSalida(){
+        return salida;
+    }
+
+    /**
+     * Retorna el arreglo de la salida para mandarlo a analisar en el sisntactico
+     *
+     * @return ArrayList<String> salida lista de las palabras a pasarse a analisar
+     */
+    public static void setResetSalida(){
+        salida.clear();
+    }
+
 
     /**
      * Realiza el reconocimiento de los elementos contenidos en el buffer.
@@ -86,7 +104,7 @@ public class Analizador {
             num = encontrar(tabla1, tabla2, numcaracter, tabla1[num][1], tabla1[num][0]);
             if (num == 0) {
                 System.out.print("ERROR  ");
-                error ++;
+                error++;
                 //System.out.print("["+buffer.charAt(i)+"]  "+ i);
                 if (buffer.indexOf(" ", i) > i) {
                     i = buffer.indexOf(" ", i);
@@ -95,7 +113,7 @@ public class Analizador {
                 }
             } else if (num < 0) {
                 String aux = buscarToken(String.valueOf(num));
-                System.out.print( aux + "  ");
+                System.out.print(aux + "  ");
                 num = 0;
                 //Control de espacio al inicio FOR REVIEW
                 if ((i + 2) < (buffer.length() - 1)) {
@@ -270,14 +288,17 @@ public class Analizador {
         if (valor != null) {
 
             //Guardando la Salida
-                String aux2 = Sintactico.reemplazarToken(valor);
+            String aux2 = Sintactico.reemplazarToken(valor);
 
-                if (aux2.equals("")){
-                    salida.add(valor);
-                }else{
-                    salida.add(aux2);
+            if (aux2.equals("")) {
+                salida.add(valor);
+                if(valor.equals("CADENA")||valor.equals("BOOL")||valor.equals("ENTERO")){
+                    salida.add(";");
                 }
-            return valor + "["+key+"]";
+            } else {
+                salida.add(aux2);
+            }
+            return valor + "[" + key + "]";
         }
         return "";
     }
@@ -374,8 +395,8 @@ public class Analizador {
             Pattern patron2 = Pattern.compile("^\\s+");
             Matcher encaja2 = patron2.matcher(resultado);
             String resultado2 = encaja2.replaceAll("");
-            String strCodigoListo = separadoresCodigo(resultado2);            
-            Salida[i] = strCodigoListo ;
+            String strCodigoListo = separadoresCodigo(resultado2);
+            Salida[i] = strCodigoListo;
         }
         return Salida;
     }

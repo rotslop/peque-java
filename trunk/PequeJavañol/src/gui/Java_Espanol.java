@@ -56,6 +56,11 @@ public class Java_Espanol extends javax.swing.JFrame {
         jtTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtTxt.setMargin(new java.awt.Insets(10, 10, 10, 10));
         jtTxt.setMinimumSize(new java.awt.Dimension(100, 100));
+        jtTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtTxtKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtTxt);
 
         jbVerificar.setText("Verificar Código");
@@ -79,7 +84,7 @@ public class Java_Espanol extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24));
         jLabel2.setText("pequeJavañol - Analizador Léxico");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,7 +149,13 @@ private void jbVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }else{
         setIconoIndicador(false);
     }
-    
+
+    System.out.println("----");
+    for(String d: Analizador.getSalida()){
+        System.out.println(""+d);
+    }
+    System.out.println("----");
+    Analizador.setResetSalida();
     
 }//GEN-LAST:event_jbVerificarActionPerformed
 
@@ -153,9 +164,33 @@ private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_jbSalirActionPerformed
 
 private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-    jtTxt.setText("VARIABLES\n\nINICIO\n\nFIN\n");
+    jtTxt.setText("VARIABLES \n\nINICIO \n\nFIN \n");
     LimpiarIconos();
 }//GEN-LAST:event_jbLimpiarActionPerformed
+
+private void jtTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTxtKeyPressed
+    
+    String txtCodigo = jtTxt.getText();
+    String txtFomato;
+    //jtTxt.setText(txtFomato);
+}//GEN-LAST:event_jtTxtKeyPressed
+
+/**
+ * Formatear el codigo para evitar errores de analisis
+ * @param txtCodigo
+ * @return String
+ * Trabajando---christmo
+ */
+    private String FormatearCodigo(String txtCodigo){
+        String txtPalabra;
+        /*for(int i=0; i<=txtCodigo.length(); i++){
+            txtPalabra+= txtCodigo.charAt(i);
+            if(){
+
+            }
+        }*/
+        return txtCodigo;
+    }
 
     /**
      * Pone el icono de codigo valido si es correcto, caso contrario pone un 
