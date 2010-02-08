@@ -177,15 +177,17 @@ public class Sintactico {
         tok.put("RESTA", "-");
         tok.put("FIN LINEA", ";");
         tok.put("ASIGNACION", "=");
-        tok.put("IGUALDAD", "==");
+        tok.put("IGUALDAD", "= =");
         tok.put("MAYOR QUE", ">");
-        tok.put("MAYOR_IGUAL QUE", ">=");
+        tok.put("MAYOR_IGUAL QUE", "> =");
         tok.put("MENOR QUE", "<");
-        tok.put("MENOR IGUAL QUE", "<=");
+        tok.put("MENOR IGUAL QUE", "< =");
         tok.put("INI_PAR", "(");
         tok.put("FIN_PAR", ")");
         tok.put("INI_LLA", "{");
         tok.put("FIN_LLA", "}");
+        tok.put("IDENTIFICADOR", "ID");
+        tok.put("NUMERO", "NUM");
 
         if (tok.get(token) == null) {
             return "";
