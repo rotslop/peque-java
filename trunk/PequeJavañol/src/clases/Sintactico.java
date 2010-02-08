@@ -17,12 +17,6 @@
  * - Idear un proceso para invertir la correspondencia de la tabla
  * - Manejador de Coincidencias y Detector de Errores.
  *
- * PROBLEMAS:
- * - El analizador léxico no reconce todos los ; en la salida
- * - Ignora la parte de VARIABLES INICIO FIN en la salida
- *      Esto hace que el léxico de errores luego.... ojo
- * - Se necesita que la salida del analizador separe los == <= >= <>
- *   como símbolos a parte.
  */
 package clases;
 
@@ -38,6 +32,7 @@ import java.util.HashMap;
  */
 public class Sintactico {
 
+    private static String terminalSintactico = "";
     //Tabla de Coincidencias Analisis LL(1)
     private static String[][] tabla = new String[31][37];
     //Pila de Analisis Sintáctico
@@ -247,6 +242,7 @@ public class Sintactico {
      */
     public static void coincidencia() {
         System.out.print("COINCIDENCIA [" + pila.get(pila.size() - 1) + "]==[" + intro.get(0) + "]");
+        setTerminalSintactico(getTerminalSintactico() + "COINCIDENCIA [" + pila.get(pila.size() - 1) + "]==[" + intro.get(0) + "]");
         //Elimina el último de la pila
         pila.remove(pila.size() - 1);
         //Elimina el primero de la entrada
@@ -275,12 +271,16 @@ public class Sintactico {
      */
     public static void presentar() {
         System.out.println("");
+        setTerminalSintactico(getTerminalSintactico() + "\n");
         for (String a : pila) {
             System.out.print(a + "  ");
+            setTerminalSintactico(getTerminalSintactico() + a + "  ");
         }
         System.out.print("              ");
+        setTerminalSintactico(getTerminalSintactico() + "\t\t\t");
         for (String a : intro) {
             System.out.print(a + "  ");
+            setTerminalSintactico(getTerminalSintactico() + a + "  ");
         }
     }
 
@@ -306,6 +306,7 @@ public class Sintactico {
             String sal = extraerConcidencia(fil, col);
             if (sal.equals("ERROR")) {
                 System.out.println("ERROR EN LA ENTRADA[" + pila.get(pila.size() - 1) + "][" + intro.get(0) + "]");
+                setTerminalSintactico(getTerminalSintactico() + "\n\nERROR EN LA ENTRADA[" + pila.get(pila.size() - 1) + "][" + intro.get(0) + "]\n");
                 error = true;
                 continuar = false;
                 break;
@@ -325,6 +326,7 @@ public class Sintactico {
                 //Verificar si ya terminó
                 if ((pila.get(pila.size() - 1).equals("$")) && (intro.get(0).equals("$"))) {
                     System.out.println("GRAMATICA TERMINADA [EXITO]");
+                    setTerminalSintactico(getTerminalSintactico() + "\n\nGRAMATICA TERMINADA [EXITO]\n");
                     continuar = false;
                     break;
                 } else {
@@ -336,7 +338,22 @@ public class Sintactico {
         //Presento si hubo errores.
         if (error) {
             System.out.println("GRAMATICA CON ERRORES");
+            setTerminalSintactico(getTerminalSintactico() + "\n\nGRAMATICA CON ERRORES\n");
         }
+    }
+
+    /**
+     * @return the terminalSintactico
+     */
+    public static String getTerminalSintactico() {
+        return terminalSintactico;
+    }
+
+    /**
+     * @param aTerminalSintactico the terminalSintactico to set
+     */
+    public static void setTerminalSintactico(String aTerminalSintactico) {
+        terminalSintactico = aTerminalSintactico;
     }
     //AREA DE TESTING
 //    public static void main(String[] args) {
