@@ -1,5 +1,5 @@
 /*
- * Funciones utilizadas por el Analizador
+ * Funciones utilizadas por el Lexico
  *
  * En la presentación ignora las palabras reservadas:
  * VARIABLES
@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * @author qmarqeva
  */
-public class Analizador {
+public class Lexico {
 
     //Tablas Compactadas
     static int tabla1[][] = null;
@@ -30,7 +30,7 @@ public class Analizador {
     private static String terminalLexico = "";
 
     /**
-     * Carga todos los archivos necesarios del Analizador
+     * Carga todos los archivos necesarios del Lexico
      *
      * @author qmarqeva
      */

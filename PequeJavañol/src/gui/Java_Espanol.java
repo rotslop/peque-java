@@ -22,7 +22,7 @@ public class Java_Espanol extends javax.swing.JFrame {
         jbSalir.setIcon(new ImageIcon("iconos/salir.png"));
 
         //Carga de Archivos
-        Analizador.cargarArchivos();
+        Lexico.cargarArchivos();
 
     }
 
@@ -157,25 +157,25 @@ public class Java_Espanol extends javax.swing.JFrame {
 
 private void jbVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerificarActionPerformed
     String texto = jtTxt.getText();
-    Analizador.setTerminalLexico("");
+    Lexico.setTerminalLexico("");
     Sintactico.setTerminalSintactico("");
     //En este vector se encuentra las lienas del codigo fuente codificadas
     //con los codigos del archivo de codigos.csv
     //a esta variable se deberia hacer el proceso de validación de las palablas
-    String[] codigo = Analizador.quitarEspaciosLineas(texto);
+    String[] codigo = Lexico.quitarEspaciosLineas(texto);
 
     //Inicio de Analisis
-    int catErrores = Analizador.analizar(codigo);
+    int catErrores = Lexico.analizar(codigo);
 
     if (catErrores == 0) {
         setIconoIndicador(true);
     } else {
         setIconoIndicador(false);
     }
-    jtLexico.setText(Analizador.getTerminalLexico());
+    jtLexico.setText(Lexico.getTerminalLexico());
     jtSintactico.setText(Sintactico.getTerminalSintactico());
 
-    Analizador.setResetSalida();
+    Lexico.setResetSalida();
 
 }//GEN-LAST:event_jbVerificarActionPerformed
 
@@ -186,7 +186,7 @@ private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
     jtTxt.setText("VARIABLES \n\nINICIO \n\nFIN \n");
     jtLexico.setText("");
-    Analizador.setTerminalLexico("");
+    Lexico.setTerminalLexico("");
     Sintactico.setTerminalSintactico("");
     jtSintactico.setText("");
     LimpiarIconos();

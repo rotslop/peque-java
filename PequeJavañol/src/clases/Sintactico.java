@@ -37,25 +37,7 @@ public class Sintactico {
     private static String[][] tabla = new String[31][37];
     //Pila de Analisis Sintáctico
     private static ArrayList<String> pila = new ArrayList<String>();
-    //Entrada de Prueba
-    //- Ejemplo 1
-    private static String[] datos = {"VARIABLES", "VAR", "ID", "BOOL", ";",
-        "INICIO", "LEER", "(", "ID", ")", ";", "FIN", "$", ""};
-    //- Ejemplo 2
-//       private static String[] datos = {"VARIABLES", "VAR", "ID", "ENTERO", ";", "VAR",
-//        "ID", "CADENA", ";", "INICIO", "REPETIR", "(",
-//        "ID", "=", "=", "NUM", ")", "{", "ESCRIBIR", "(",
-//        "NUM", ")", ";", "}", "SI", "(", "TRUE", ")",
-//        "{", "}", "SINO", "{", "ID", "=", "NUM", "+",
-//        "NUM", ";", "}", "FIN", "$"};
-    //- Ejemplo 3
-//    private static String[] datos = {"VARIABLES","VAR","ID","BOOL",";","INICIO",
-//                                "PARA","(","ID","=","NUM",";","NUM",";","NUM",
-//                                ")","{","OPCION","(","ID","+","NUM",")","{",
-//                                "CASO","NUM",":","ESCRIBIR","(","CADENA",")",
-//                                ";","CASO","NUM",":","ESCRIBIR","(","CADENA",
-//                                ")",";","SINO",":","LEER","(","ID",")",";",
-//                                "}","}","FIN","$"};
+
     static ArrayList<String> intro = new ArrayList<String>();
 
     /**
@@ -64,9 +46,7 @@ public class Sintactico {
      * Analizador Lexico
      */
     public static void llenado(ArrayList<String> tokens) {
-//        for (int i = 0; i < tokens.length; i++) {
-//            intro.add(tokens[i]);
-//        }
+
         intro = tokens;
 
         pila.add("$");
@@ -300,8 +280,6 @@ public class Sintactico {
             int col = buscarElementoTerminal(intro.get(0));
             int fil = buscarElementoNoTerminal(pila.get(pila.size() - 1));
 
-            //System.out.println("[" + pila.get(pila.size() - 1) + "][" + intro.get(0) + "]");
-
             //Localizo el elemento en la tabla
             String sal = extraerConcidencia(fil, col);
             if (sal.equals("ERROR")) {
@@ -356,8 +334,5 @@ public class Sintactico {
     public static void setTerminalSintactico(String aTerminalSintactico) {
         terminalSintactico = aTerminalSintactico;
     }
-    //AREA DE TESTING
-//    public static void main(String[] args) {
-//        analisisSintactico(datos);
-//    }
+
 }
