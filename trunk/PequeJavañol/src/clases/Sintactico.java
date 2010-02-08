@@ -277,14 +277,14 @@ public class Sintactico {
             setTerminalSintactico(getTerminalSintactico() + a + "  ");
         }
         System.out.print("              ");
-        setTerminalSintactico(getTerminalSintactico() + "\t\t\t");
+        setTerminalSintactico(getTerminalSintactico() + "\t\t\t\t\t\t");
         for (String a : intro) {
             System.out.print(a + "  ");
             setTerminalSintactico(getTerminalSintactico() + a + "  ");
         }
     }
 
-    public static void analisisSintactico(ArrayList<String> tokens) {
+    public static boolean analisisSintactico(ArrayList<String> tokens) {
         cargarTabla();
         //   presentarTabla();
 
@@ -340,6 +340,7 @@ public class Sintactico {
             System.out.println("GRAMATICA CON ERRORES");
             setTerminalSintactico(getTerminalSintactico() + "\n\nGRAMATICA CON ERRORES\n");
         }
+        return error;
     }
 
     /**
