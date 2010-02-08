@@ -74,7 +74,11 @@ public class Analizador {
         System.out.println("");
         System.out.println("-------------------------------");
         //Analisis Sintáctico
-        Sintactico.analisisSintactico(salida);
+        if(Sintactico.analisisSintactico(salida)){
+            error = 1;
+        }else{
+            error = 0;
+        }
         return error;
     }
 
