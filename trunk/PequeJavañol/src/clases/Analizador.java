@@ -60,6 +60,9 @@ public class Analizador {
         System.out.println("****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****");
 
 
+        //Añadir elemento del Final $
+        salida.add("$");
+
         System.out.println("-------------------------------");
         for (String s : salida) {
             System.out.print("[" + s + "] ");
@@ -296,7 +299,14 @@ public class Analizador {
                     salida.add(";");
                 }
             } else {
-                salida.add(aux2);
+                //Para símbolos compuestos
+                //En base a la respuesta de
+                //reemplazarToken(valor)
+
+                String[] alfa = aux2.split(" ");
+                for (int i=0; i<alfa.length; i++){
+                    salida.add(alfa[i]);
+                }
             }
             return valor + "[" + key + "]";
         }

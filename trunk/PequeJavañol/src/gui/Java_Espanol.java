@@ -48,10 +48,10 @@ public class Java_Espanol extends javax.swing.JFrame {
         setTitle("Javañol");
 
         jtTxt.setColumns(20);
-        jtTxt.setFont(new java.awt.Font("Courier New", 0, 14));
+        jtTxt.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jtTxt.setRows(5);
         jtTxt.setTabSize(5);
-        jtTxt.setText("[Esto deberia ser un comentario]\nVARIABLES \n\tVAR _iden12 ENTERO;\n\tVAR _id2cad CADENA;\n\tVAR _contador ENTERO;\nINICIO\n\t_iden12 = 34;\n\t\n\tSI ( _iden12 == 34 ) {\n\t\tESCRIBIR('Es correcto');\n\t}SINO{\n\t\tLEER(_den12);\n\t}\n\t\n\tOPCION (_den12) {\n\t\tCASO 1 :\n\t\t\tESCRIBIR('Es correcto');\n\t\tCASO 2 :\n\t\t\tLEER(_id2cad);\n\t\tSINO :\n\t\t\tESCRIBIR('Equivocado ');\n\t}\n\t\n\tREPETIR (_den12 <= 15){\n\t\tESCRIBIR('Dentro');\n\t\t_den12 = _den12 + 1;\n\t}\n\t\n\tPARA (_contador = 15 , _contador >= 5 , -1){\n\t\tESCRIBIR('Ciclo Repetitivo');\n\t}\n\t\nFIN");
+        jtTxt.setText("VARIABLES \nVAR _ID ENTERO;\nVAR _ID CADENA;\nINICIO \nREPETIR ( _ID == _NUM ){ \nESCRIBIR ( _NUM ) ; \n} \nSI ( TRUE ) { \n} SINO { \n_ID = _NUM + _NUM ; \n} \nFIN ");
         jtTxt.setToolTipText("Ingrese el Código...");
         jtTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtTxt.setMargin(new java.awt.Insets(10, 10, 10, 10));

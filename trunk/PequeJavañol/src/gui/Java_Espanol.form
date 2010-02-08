@@ -87,7 +87,7 @@
             </Property>
             <Property name="rows" type="int" value="5"/>
             <Property name="tabSize" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="[Esto deberia ser un comentario]&#xa;VARIABLES &#xa;&#x9;VAR _iden12 ENTERO;&#xa;&#x9;VAR _id2cad CADENA;&#xa;&#x9;VAR _contador ENTERO;&#xa;INICIO&#xa;&#x9;_iden12 = 34;&#xa;&#x9;&#xa;&#x9;SI ( _iden12 == 34 ) {&#xa;&#x9;&#x9;ESCRIBIR(&apos;Es correcto&apos;);&#xa;&#x9;}SINO{&#xa;&#x9;&#x9;LEER(_den12);&#xa;&#x9;}&#xa;&#x9;&#xa;&#x9;OPCION (_den12) {&#xa;&#x9;&#x9;CASO 1 :&#xa;&#x9;&#x9;&#x9;ESCRIBIR(&apos;Es correcto&apos;);&#xa;&#x9;&#x9;CASO 2 :&#xa;&#x9;&#x9;&#x9;LEER(_id2cad);&#xa;&#x9;&#x9;SINO :&#xa;&#x9;&#x9;&#x9;ESCRIBIR(&apos;Equivocado &apos;);&#xa;&#x9;}&#xa;&#x9;&#xa;&#x9;REPETIR (_den12 &lt;= 15){&#xa;&#x9;&#x9;ESCRIBIR(&apos;Dentro&apos;);&#xa;&#x9;&#x9;_den12 = _den12 + 1;&#xa;&#x9;}&#xa;&#x9;&#xa;&#x9;PARA (_contador = 15 , _contador &gt;= 5 , -1){&#xa;&#x9;&#x9;ESCRIBIR(&apos;Ciclo Repetitivo&apos;);&#xa;&#x9;}&#xa;&#x9;&#xa;FIN"/>
+            <Property name="text" type="java.lang.String" value="VARIABLES &#xa;VAR _ID ENTERO;&#xa;VAR _ID CADENA;&#xa;INICIO &#xa;REPETIR ( _ID == _NUM ){ &#xa;ESCRIBIR ( _NUM ) ; &#xa;} &#xa;SI ( TRUE ) { &#xa;} SINO { &#xa;_ID = _NUM + _NUM ; &#xa;} &#xa;FIN "/>
             <Property name="toolTipText" type="java.lang.String" value="Ingrese el C&#xf3;digo..."/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de texto"/>
