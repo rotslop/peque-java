@@ -27,6 +27,7 @@ public class Analizador {
     static HashMap codigo = null;
     //Salida de Tokens
     static ArrayList<String> salida = new ArrayList<String>();
+    private static String terminalLexico = "";
 
     /**
      * Carga todos los archivos necesarios del Analizador
@@ -51,14 +52,17 @@ public class Analizador {
      */
     public static int analizar(String[] texto) {
         System.out.println("********ANALISIS********");
+        terminalLexico += "********ANÁLISIS LÉXICO********\n";
         int error = 0;
         for (int i = 0; i < texto.length; i++) {
             System.out.print("line number[" + (i + 1) + "]:");
+            terminalLexico += "Número de Linea[" + (i + 1) + "]: ";
             error += lecturaBuffer(texto[i]);
             System.out.println("");
+            terminalLexico += "\n";
         }
-        System.out.println("****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****");
-
+        System.err.println("****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****");
+        terminalLexico += "\n****ATENCIÓN: SE DETECTARON [" + error + "] ERRORES****\n";
 
         //Añadir elemento del Final $
         salida.add("$");
@@ -69,7 +73,7 @@ public class Analizador {
         }
         System.out.println("");
         System.out.println("-------------------------------");
-//Analisis Sintáctico
+        //Analisis Sintáctico
         Sintactico.analisisSintactico(salida);
         return error;
     }
@@ -107,6 +111,7 @@ public class Analizador {
             num = encontrar(tabla1, tabla2, numcaracter, tabla1[num][1], tabla1[num][0]);
             if (num == 0) {
                 System.out.print("ERROR  ");
+                terminalLexico += "ERROR  ";
                 error++;
                 //System.out.print("["+buffer.charAt(i)+"]  "+ i);
                 if (buffer.indexOf(" ", i) > i) {
@@ -117,6 +122,7 @@ public class Analizador {
             } else if (num < 0) {
                 String aux = buscarToken(String.valueOf(num));
                 System.out.print(aux + "  ");
+                terminalLexico += aux + "  ";
                 num = 0;
                 //Control de espacio al inicio FOR REVIEW
                 if ((i + 2) < (buffer.length() - 1)) {
@@ -304,7 +310,7 @@ public class Analizador {
                 //reemplazarToken(valor)
 
                 String[] alfa = aux2.split(" ");
-                for (int i=0; i<alfa.length; i++){
+                for (int i = 0; i < alfa.length; i++) {
                     salida.add(alfa[i]);
                 }
             }
@@ -409,19 +415,19 @@ public class Analizador {
             Matcher encaja2 = patron2.matcher(resultado);
             String resultado2 = encaja2.replaceAll("");
             String strCodigoListo = separadoresCodigo(resultado2);
-            
-            if(strCodigoListo.equals("VARIABLES")){
-                Salida[i] = strCodigoListo+" "; //error aqui aun hay que poner espacio al final de variables revisar christmo
+
+            if (strCodigoListo.equals("VARIABLES")) {
+                Salida[i] = strCodigoListo + " "; //error aqui aun hay que poner espacio al final de variables revisar christmo
                 //System.out.println("--"+Salida[i]);
                 inicio = false;
             }
-            if(strCodigoListo.equals("INICIO")){
-                Salida[i] = strCodigoListo+" ";
+            if (strCodigoListo.equals("INICIO")) {
+                Salida[i] = strCodigoListo + " ";
                 inicio = true;
             }
-            if(inicio){
-                Salida[i] = strCodigoListo+" ";
-            }else{
+            if (inicio) {
+                Salida[i] = strCodigoListo + " ";
+            } else {
                 Salida[i] = strCodigoListo;
             }
         }
@@ -496,5 +502,19 @@ public class Analizador {
             return "";
         }
         return strNuevoCod;
+    }
+
+    /**
+     * @return the terminalLexico
+     */
+    public static String getTerminalLexico() {
+        return terminalLexico;
+    }
+
+    /**
+     * @param aTerminalLexico the terminalLexico to set
+     */
+    public static void setTerminalLexico(String aTerminalLexico) {
+        terminalLexico = aTerminalLexico;
     }
 }

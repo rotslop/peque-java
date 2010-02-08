@@ -35,28 +35,22 @@ public class Java_Espanol extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtTxt = new javax.swing.JTextArea();
         jbVerificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jlIndicador2 = new javax.swing.JLabel();
         jlIndicador = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtTxt = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtLexico = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtSintactico = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Javañol");
-
-        jtTxt.setColumns(20);
-        jtTxt.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jtTxt.setRows(5);
-        jtTxt.setTabSize(5);
-        jtTxt.setText("VARIABLES \nVAR _ID ENTERO;\nVAR _ID CADENA;\nINICIO \nREPETIR ( _ID == _NUM ){ \nESCRIBIR ( _NUM ) ; \n} \nSI ( TRUE ) { \n} SINO { \n_ID = _NUM + _NUM ; \n} \nFIN ");
-        jtTxt.setToolTipText("Ingrese el Código...");
-        jtTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jtTxt.setMargin(new java.awt.Insets(10, 10, 10, 10));
-        jtTxt.setMinimumSize(new java.awt.Dimension(100, 100));
-        jScrollPane1.setViewportView(jtTxt);
 
         jbVerificar.setText("Verificar Código");
         jbVerificar.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +74,38 @@ public class Java_Espanol extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24));
-        jLabel2.setText("pequeJavañol - Analizador Léxico");
+        jLabel2.setText("pequeJavañol");
+
+        jtTxt.setColumns(20);
+        jtTxt.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jtTxt.setRows(5);
+        jtTxt.setTabSize(5);
+        jtTxt.setText("VARIABLES \nVAR _ID ENTERO;\nVAR _ID CADENA;\nINICIO \nREPETIR ( _ID == _NUM ){ \nESCRIBIR ( _NUM ) ; \n} \nSI ( TRUE ) { \n} SINO { \n_ID = _NUM + _NUM ; \n} \nFIN ");
+        jtTxt.setToolTipText("Ingrese el Código...");
+        jtTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtTxt.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jtTxt.setMinimumSize(new java.awt.Dimension(100, 100));
+        jScrollPane1.setViewportView(jtTxt);
+
+        jTabbedPane1.addTab("Codigo Fuente", jScrollPane1);
+
+        jtLexico.setColumns(20);
+        jtLexico.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jtLexico.setRows(5);
+        jtLexico.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jtLexico.setMinimumSize(new java.awt.Dimension(100, 100));
+        jScrollPane2.setViewportView(jtLexico);
+
+        jTabbedPane1.addTab("Análisis Léxico", jScrollPane2);
+
+        jtSintactico.setColumns(20);
+        jtSintactico.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jtSintactico.setRows(5);
+        jtSintactico.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jtSintactico.setMinimumSize(new java.awt.Dimension(100, 100));
+        jScrollPane3.setViewportView(jtSintactico);
+
+        jTabbedPane1.addTab("Análisis Sintáctico", jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,35 +115,37 @@ public class Java_Espanol extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlIndicador)
-                            .addComponent(jbLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(jbVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlIndicador2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addComponent(jbLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jlIndicador)
+                                .addComponent(jlIndicador2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jbVerificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))
                     .addComponent(jLabel2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addComponent(jbVerificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbLimpiar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbSalir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 450, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlIndicador2)
                             .addComponent(jlIndicador)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -130,7 +157,8 @@ public class Java_Espanol extends javax.swing.JFrame {
 
 private void jbVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerificarActionPerformed
     String texto = jtTxt.getText();
-
+    Analizador.setTerminalLexico("");
+    Sintactico.setTerminalSintactico("");
     //En este vector se encuentra las lienas del codigo fuente codificadas
     //con los codigos del archivo de codigos.csv
     //a esta variable se deberia hacer el proceso de validación de las palablas
@@ -144,12 +172,9 @@ private void jbVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     } else {
         setIconoIndicador(false);
     }
+    jtLexico.setText(Analizador.getTerminalLexico());
+    jtSintactico.setText(Sintactico.getTerminalSintactico());
 
-//    System.out.println("----");
-//    for(String d: Analizador.getSalida()){
-//        System.out.println(""+d);
-//    }
-//    System.out.println("----");
     Analizador.setResetSalida();
 
 }//GEN-LAST:event_jbVerificarActionPerformed
@@ -160,6 +185,10 @@ private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
     jtTxt.setText("VARIABLES \n\nINICIO \n\nFIN \n");
+    jtLexico.setText("");
+    Analizador.setTerminalLexico("");
+    Sintactico.setTerminalSintactico("");
+    jtSintactico.setText("");
     LimpiarIconos();
 }//GEN-LAST:event_jbLimpiarActionPerformed
 
@@ -202,11 +231,16 @@ private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbVerificar;
     private javax.swing.JLabel jlIndicador;
     private javax.swing.JLabel jlIndicador2;
+    private javax.swing.JTextArea jtLexico;
+    private javax.swing.JTextArea jtSintactico;
     private javax.swing.JTextArea jtTxt;
     // End of variables declaration//GEN-END:variables
 }
